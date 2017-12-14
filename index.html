@@ -12,15 +12,27 @@
 			<div class="page-content">
 				<nav>
 					<a href="">全部</a>
-					<a href="">创意</a>
+					<a href="">项目</a>
 					<a href="">组件</a>
 					<a href="">博客</a>
-					<a href="">FCC</a>
-					<a href="">项目</a>
-					<a href="">GitHub</a>
+					<a href="https://www.freecodecamp.org/taosang1992">FCC</a>
+					<a href="https://github.com/taosang1992">Github</a>
+					<a href="https://codepen.io/taosang1992">Codepen</a>
 					<a href="">关于我</a>
 				</nav>
+				<div class="works-container">
+					<a class="work-item" v-for="(work,index) in works_data" :key="index" :href="work.path" target="_blank">
+						<div class="img-box">
+							<img :src="work.pic" alt="作品图片">
+							<div class="mask">{{work.intro}}</div>
+						</div>
+						<div class="work-title">{{work.title}}</div>
+					</a>
+				</div>
 			</div>
+			<footer>
+				© 2017 Code & Design By 小董君
+			</footer>
 		</div>
 		<script src="lib/vue.js"></script>
 		<script src="lib/axios.min.js"></script>

@@ -28,6 +28,10 @@ body {
   margin-top: 80px;
   text-align: center;
 }
+.page-content {
+  font-size: 16px;
+  min-height: 100vh;
+}
 .page-content nav {
   width: 680px;
   margin: 50px auto;
@@ -44,4 +48,55 @@ body {
 .page-content nav a:hover {
   background-color: #cccccc;
   transition: background .5s linear;
+}
+.works-container {
+  margin: 0 auto;
+  width: 960px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.works-container .work-item {
+  box-sizing: border-box;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  border: 5px solid #ffffff;
+}
+.works-container .work-item .img-box {
+  width: 300px;
+  height: 225px;
+  position: relative;
+}
+.works-container .work-item .img-box img {
+  width: 100%;
+  height: 100%;
+}
+.works-container .work-item .img-box .mask {
+  box-sizing: border-box;
+  padding: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  display: none;
+}
+.works-container .work-item:hover .mask {
+  display: block;
+  transition: display .5s linear;
+}
+.works-container .work-item .work-title {
+  height: 40px;
+  text-align: right;
+  line-height: 40px;
+}
+footer {
+  height: 80px;
+  line-height: 80px;
+  background-color: #333333;
+  text-align: center;
+  color: #ffffff;
 }
