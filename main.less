@@ -1,0 +1,59 @@
+//样式重置
+* {
+  margin: 0;
+  padding: 0;
+}
+
+//清除浮动
+.clearF {
+  overflow: auto;
+  zoom: 1;
+}
+
+.fL {
+  float: left;
+}
+
+.fR {
+  float: right;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: #333333;
+}
+
+body {
+  background-color: #eeeeee;
+  font-family: Verdana, Helvetica, 'Microsoft Yahei', 'PingFang SC', serif;
+  color: #333333;
+}
+
+.page-title {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.page-content {
+  nav {
+    width: 680px;
+    margin: 50px auto;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    text-align: center;
+    a {
+      height: 40px;
+      display: inline-block;
+      padding: 0 1em;
+      line-height: 40px;
+      &:hover {
+        background-color: #cccccc;
+        transition: background .5s linear;
+      }
+    }
+  }
+}
