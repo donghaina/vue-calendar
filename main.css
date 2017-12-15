@@ -64,8 +64,7 @@ body {
   border: 5px solid #ffffff;
 }
 .works-container .work-item .img-box {
-  width: 300px;
-  height: 225px;
+  width: 450px;
   position: relative;
 }
 .works-container .work-item .img-box img {

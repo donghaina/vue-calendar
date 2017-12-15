@@ -25,7 +25,10 @@
 							<img :src="work.pic" alt="作品图片">
 							<div class="mask">{{work.intro}}</div>
 						</div>
-						<div class="work-title">{{work.title}}</div>
+						<div class="work-title">
+							<span>{{work.title}}</span>
+							<a :href="work.github">查看源码</a>
+						</div>
 					</a>
 				</div>
 			</div>
