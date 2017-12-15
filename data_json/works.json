@@ -10,21 +10,21 @@
     "title": "3D轮播图",
     "intro": "原生JS实现的轮播图",
     "type": "work",
-    "pic":"http://orcudrwor.bkt.clouddn.com/%20pic.jpg",
+    "pic":"../imgs/img02.png",
     "path":"https://github.com/taosang1992/works"
   },
   {
     "title": "3D轮播图",
     "intro": "原生JS实现的轮播图",
     "type": "work",
-    "pic":"http://orcudrwor.bkt.clouddn.com/%20pic.jpg",
+    "pic":"../imgs/img03.png",
     "path":"https://github.com/taosang1992/works"
   },
   {
     "title": "3D轮播图",
     "intro": "原生JS实现的轮播图",
     "type": "work",
-    "pic":"http://orcudrwor.bkt.clouddn.com/%20pic.jpg",
+    "pic":"../imgs/img03.png",
     "path":"https://github.com/taosang1992/works"
   }
 ]
