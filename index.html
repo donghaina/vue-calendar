@@ -11,8 +11,8 @@
 			<h1 class="page-title">小董君作品集</h1>
 			<div class="page-content">
 				<nav>
-					<a href="">项目</a>
-					<a href="">组件</a>
+					<a href="javascript:;" @click="getComponents">组件</a>
+					<a href="javascript:;" @click="getProjects">项目</a>
 					<a href="http://www.jianshu.com/u/8c85b6c419d1" target="_blank">博客</a>
 					<a href="https://www.freecodecamp.org/taosang1992" target="_blank">FCC</a>
 					<a href="https://github.com/taosang1992"target="_blank">Github</a>
@@ -20,16 +20,19 @@
 					<a href="https://github.com/taosang1992/resume/blob/gh-pages/about-me.md" target="_blank">关于我</a>
 				</nav>
 				<div class="works-container">
-					<a class="work-item" v-for="(work,index) in works_data" :key="index" :href="work.path" target="_blank">
+					<div class="work-item" v-for="(work,index) in works_data" :key="index" target="_blank">
 						<div class="img-box">
 							<img :src="work.pic" alt="作品图片">
 							<div class="mask">{{work.intro}}</div>
 						</div>
-						<div class="work-title">
-							<span>{{work.title}}</span>
-							<a :href="work.github">查看源码</a>
+						<div class="work-title-box">
+							<span class="work-title">{{work.title}}</span>
+							<div class="link-box">
+								<a :href="work.github" target="_blank" class="link">查看源码</a>
+								<a :href="work.path"target="_blank" class="link">在线演示</a>
+							</div>
 						</div>
-					</a>
+					</div>
 				</div>
 			</div>
 			<footer>

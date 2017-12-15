@@ -30,6 +30,7 @@ body {
 }
 .page-content {
   font-size: 16px;
+  font-weight: 300;
   min-height: 100vh;
 }
 .page-content nav {
@@ -87,10 +88,29 @@ body {
   display: block;
   transition: display .5s linear;
 }
-.works-container .work-item .work-title {
+.works-container .work-item .work-title-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.works-container .work-item .work-title-box .work-title {
   height: 40px;
-  text-align: right;
+  text-align: left;
   line-height: 40px;
+  font-weight: 400;
+}
+.works-container .work-item .work-title-box .link {
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center;
+  width: 5em;
+  background-color: #333333;
+  color: #ffffff;
+  border-radius: 5px;
+}
+.works-container .work-item .work-title-box .link:hover {
+  background-color: #666666;
 }
 footer {
   height: 80px;

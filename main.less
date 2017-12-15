@@ -40,6 +40,7 @@ body {
 
 .page-content {
   font-size: 16px;
+  font-weight: 300;
   nav {
     width: 680px;
     margin: 50px auto;
@@ -99,10 +100,29 @@ body {
         transition: display .5s linear;
       }
     }
-    .work-title {
-      height: 40px;
-      text-align: right;
-      line-height: 40px;
+    .work-title-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .work-title{
+        height: 40px;
+        text-align: left;
+        line-height: 40px;
+        font-weight: 400;
+      }
+      .link{
+        height: 30px;
+        line-height: 30px;
+        display: inline-block;
+        text-align: center;
+        width: 5em;
+        background-color: #333333;
+        color: #ffffff;
+        border-radius: 5px;
+        &:hover{
+          background-color: #666666;
+        }
+      }
     }
   }
 }
