@@ -1,18 +1,18 @@
-# vue-pay-keyboard
+# vue-calendar
 
-A Vue component to pay-keyboard
-一个虚拟数字支付键盘插件
+A Vue Calendar component
+Vue日历插件
 
-[vue插件开发与发布](https://www.jianshu.com/p/d6855556cd75)
+<!-- [vue插件开发与发布](https://www.jianshu.com/p/d6855556cd75) -->
 
 ## demo演示
 
-[demo](http://mall.yucccc.com/vuepayboard/)
+<!-- [demo](http://mall.yucccc.com/vuepayboard/) -->
 
 ## 安装
 
 ```JS
-npm install vue-pay-keyboard -S
+npm install vue-calendar -S
 ```
 
 ## 使用
