@@ -13,6 +13,7 @@
         <div
           :class="`main__block ${item.day === selectedDate && 'main__block-today'}`"
           @click.stop="handleDayClick($event,item)"
+          @mouseover="showEventList($event,item)"
           v-for="(item, index) in displayDaysPerMonth(selectedYear, selectedMonth)"
           :key="item.type + item.day + `${index}`"
         >{{item.day}}</div>
@@ -32,6 +33,7 @@
         <div
           :class="`main__block ${(item.type === 'pre' || item.type === 'next') ? 'main__block-not' : ''} ${(item.day === selectedDate && item.type === 'normal') && 'main__block-today'}`"
           @click.stop="handleDayClick($event,item)"
+          @mouseover="showEventList($event,item)"
           v-for="(item, index) in displayDaysPerMonthT(selectedYear)[selectedMonth]"
           :key="item.type + item.day + `${index}`"
         >
@@ -83,11 +85,24 @@ export default {
     };
   },
   methods: {
-    showEventList(e) {
-      console.log(e);
-      setTimeout(() => {
-        this.eventListVisible = true;
-      }, 100);
+    showEventList(e, item) {
+      // console.log(e);
+      this.events = this.eventList[item.key]
+        ? this.eventList[item.key]["activity_list"]
+        : [];
+      // console.log(this.events.length);
+      // if(this.eve)
+      if (this.events.length > 0) {
+        this.offestTop = e.clientY + "px";
+        this.offsetLeft = 0;
+        setTimeout(() => {
+          this.eventListVisible = true;
+        }, 100);
+      } else {
+        setTimeout(() => {
+          this.eventListVisible = false;
+        }, 100);
+      }
     },
     hideEventList(e) {
       this.eventListVisible = false;
@@ -246,19 +261,6 @@ export default {
       if (item.type === "normal") {
         this.selectedDate = Number(item.day);
       }
-      this.events = this.eventList[item.key]
-        ? this.eventList[item.key]["activity_list"]
-        : [];
-      if (this.events.length > 0) {
-        this.offestTop = e.y + 30 + "px";
-        this.offsetLeft = 0;
-
-        setTimeout(() => {
-          this.eventListVisible = true;
-        }, 100);
-      } else {
-        this.eventListVisible = false;
-      }
     },
     handlePreMonth() {
       if (this.selectedMonth === 0) {
@@ -282,12 +284,12 @@ export default {
     }
   },
   mounted() {
-    let _this = this;
-    document.addEventListener("click", function(e) {
-      if (!_this.$refs.calendarBox.contains(e.target)) {
-        _this.eventListVisible = false;
-      }
-    });
+    // let _this = this;
+    // document.addEventListener("mouseover", function(e) {
+    //   if (!_this.$refs.calendarBox.contains(e.target)) {
+    //     _this.eventListVisible = false;
+    //   }
+    // });
   }
 };
 </script>
@@ -326,9 +328,8 @@ $link-color: #448aff;
     color: $link-color;
     text-decoration: none;
     font-size: 14px;
-    &:hover{
-      // darken($link-clolr,30%);
-       color:#444444;
+    &:hover {
+      color: #444444;
     }
   }
 }
