@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <vue-calendar :type="type" :event-list="activityList"></vue-calendar>
-
+    <vue-calendar :type="type" 
+                  :event-list="activityList" 
+                  @on-day-click="handleDayClick" 
+                   @on-pre-month="handlePreMonth" 
+                  @on-next-month="handleNextMonth"></vue-calendar>
   </div>
 </template>
 
@@ -13,13 +16,20 @@ export default {
     return {
       type: 'year',
       highlightColor: '#ffcc00',
+      selectedYear: new Date().getFullYear(),
+      selectedMonth: (new Date().getMonth() + 1 ),
       activityList: {}
     }
   },
   methods: {
     getActivityList(){
       const _this = this;
-      axios.get('http://web.tycho/api/activity/calendar').then(res=>{
+      axios.get('http://web.tycho/api/activity/calendar',{
+        params:{
+          year: _this.selectedYear,
+          month: _this.selectedMonth,
+        }
+      }).then(res=>{
         _this.activityList = res.data.data
       })
     },
@@ -42,6 +52,19 @@ export default {
           this.$refs.pay1.$payStatus(false)
         }
       }, 1000)
+    },
+    handlePreMonth(params){
+      this.selectedYear = params.selectedYear;
+      this.selectedMonth = params.selectedMonth;
+      this.getActivityList();
+    },
+    handleNextMonth(params){
+      this.selectedYear = params.selectedYear;
+      this.selectedMonth = params.selectedMonth;
+      this.getActivityList();
+    },
+    handleDayClick(params){
+      console.log(params);
     }
   },
   created() {

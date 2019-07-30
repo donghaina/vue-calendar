@@ -258,6 +258,7 @@ export default {
     handleDayClick(e, item) {
       if (item.type === "normal") {
         this.selectedDate = Number(item.day);
+        this.$emit('on-day-click',item);
       }
     },
     handlePreMonth() {
@@ -269,6 +270,11 @@ export default {
         this.selectedMonth = this.selectedMonth - 1;
         this.selectedDate = 1;
       }
+      this.$emit('on-pre-month',{
+        selectedYear: this.selectedYear,
+        selectedMonth: this.selectedMonth + 1,
+        selectedDate: this.selectedDate
+      })
     },
     handleNextMonth() {
       if (this.selectedMonth === 11) {
@@ -279,6 +285,11 @@ export default {
         this.selectedMonth = this.selectedMonth + 1;
         this.selectedDate = 1;
       }
+        this.$emit('on-next-month',{
+        selectedYear: this.selectedYear,
+        selectedMonth: this.selectedMonth + 1,
+        selectedDate: this.selectedDate
+      })
     }
   },
   mounted() {
