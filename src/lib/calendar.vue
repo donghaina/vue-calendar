@@ -45,12 +45,13 @@
         </div>
       </div>
     </div>
-
-    <ul class="event-list" v-if="eventListVisible" :style="{top:offestTop,left:offsetLeft}">
-      <li v-for="(item,index) in events" :key="index">
-        <a :href="item.link" target="_blank">{{item.title}}</a>
-      </li>
-    </ul>
+    <section class="event-wrapper"  :style="{top:offestTop,left:offsetLeft}"  v-if="eventListVisible">
+      <ul class="event-list">
+        <li v-for="(item,index) in events" :key="index">
+          <a :href="item.link" target="_blank">{{item.title}}</a>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
@@ -91,7 +92,7 @@ export default {
         : [];
       if (this.events.length > 0) {
         this.offestTop = e.pageY - 20 + "px";
-        this.offsetLeft = e.pageX - 360 + 'px';
+        this.offsetLeft = e.pageX - 360 + "px";
         setTimeout(() => {
           this.eventListVisible = true;
         }, 100);
@@ -306,7 +307,9 @@ $link-color: #448aff;
   flex-wrap: wrap;
   // box-shadow: 0 0 10px rgba(208, 208, 208, 0.5);
 }
-.event-list {
+.event-wrapper {
+  padding: 15px;
+  background-color: #ffffff;
   position: absolute;
   box-sizing: border-box;
   max-width: 360px;
@@ -314,17 +317,23 @@ $link-color: #448aff;
   margin: 0 auto;
   left: 0;
   right: 0;
-  background-color: #ffffff;
-  padding: 15px;
   z-index: 1000;
-  list-style-type: none;
+}
+.event-list {
+  color: #409eff;
+  margin-left: 15px;
   & > li > a {
+    display: block;
+    width: 100%;
     color: $link-color;
     text-decoration: none;
     font-size: 14px;
-    // &:hover {
-    //   color: #444444;
-    // }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    // display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 }
 .tips {
