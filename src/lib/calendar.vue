@@ -48,7 +48,7 @@
 
     <ul class="event-list" v-if="eventListVisible" :style="{top:offestTop,left:offsetLeft}">
       <li v-for="(item,index) in events" :key="index">
-        <a href="/">{{item.title}}</a>
+        <a :href="item.link" target="_blank">{{item.title}}</a>
       </li>
     </ul>
   </div>
@@ -86,15 +86,12 @@ export default {
   },
   methods: {
     showEventList(e, item) {
-      // console.log(e);
       this.events = this.eventList[item.key]
         ? this.eventList[item.key]["activity_list"]
         : [];
-      // console.log(this.events.length);
-      // if(this.eve)
       if (this.events.length > 0) {
-        this.offestTop = e.clientY + "px";
-        this.offsetLeft = 0;
+        this.offestTop = e.pageY - 20 + "px";
+        this.offsetLeft = e.pageX - 360 + 'px';
         setTimeout(() => {
           this.eventListVisible = true;
         }, 100);
@@ -302,25 +299,22 @@ $link-color: #448aff;
 
 .mywk__calendar {
   width: 100%;
-  min-width: 360px;
   max-width: 480px;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  box-shadow: 0 0 10px rgba(208, 208, 208, 0.5);
-  position: relative;
+  // box-shadow: 0 0 10px rgba(208, 208, 208, 0.5);
 }
 .event-list {
   position: absolute;
   box-sizing: border-box;
-  min-width: 360px;
-  max-width: 480px;
-  width: pxWithVw(350);
+  max-width: 360px;
+  width: pxWithVw(300);
   margin: 0 auto;
   left: 0;
   right: 0;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   padding: 15px;
   z-index: 1000;
   list-style-type: none;
@@ -328,9 +322,9 @@ $link-color: #448aff;
     color: $link-color;
     text-decoration: none;
     font-size: 14px;
-    &:hover {
-      color: #444444;
-    }
+    // &:hover {
+    //   color: #444444;
+    // }
   }
 }
 .tips {
@@ -344,18 +338,20 @@ $link-color: #448aff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 15px 0;
+  // margin: 15px 0;
   border-radius: 4px;
   background-color: white;
   .calendar__header {
+    background-color: #f1f1f1;
     color: #2c3135;
     font-size: 16px;
     width: pxWithVw(350);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    line-height: 22px;
-    margin-top: 17px;
+    line-height: 40px;
+    height: 40px;
+    margin-bottom: 1px;
 
     .header__title {
       font-size: 16px;
@@ -365,7 +361,9 @@ $link-color: #448aff;
     .header__pre {
       height: 12px;
       width: 12px;
+      margin-left: 20px;
       position: relative;
+      cursor: pointer;
       &:after {
         content: " ";
         display: inline-block;
@@ -385,6 +383,8 @@ $link-color: #448aff;
     .header__next {
       height: 12px;
       width: 12px;
+      margin-right: 20px;
+      cursor: pointer;
       position: relative;
       &:after {
         content: " ";
@@ -408,8 +408,6 @@ $link-color: #448aff;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding-top: 19px;
-
     .main__block {
       width: pxWithVw(52);
       height: 40px;
