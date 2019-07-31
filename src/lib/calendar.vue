@@ -13,7 +13,7 @@
         <div
           :class="`main__block ${item.day === selectedDate && 'main__block-today'}`"
           @click.stop="handleDayClick($event,item)"
-          @mouseover="showEventList($event,item)"
+          @mouseover.stop="showEventList($event,item)"
           v-for="(item, index) in displayDaysPerMonth(selectedYear, selectedMonth)"
           :key="item.type + item.day + `${index}`"
         >{{item.day}}</div>
@@ -33,7 +33,7 @@
         <div
           :class="`main__block ${(item.type === 'pre' || item.type === 'next') ? 'main__block-not' : ''} ${(item.day === selectedDate && item.type === 'normal') && 'main__block-today'}`"
           @click.stop="handleDayClick($event,item)"
-          @mouseover="showEventList($event,item)"
+          @mouseover.stop="showEventList($event,item)"
           v-for="(item, index) in displayDaysPerMonthT(selectedYear)[selectedMonth]"
           :key="item.type + item.day + `${index}`"
         >
@@ -293,18 +293,17 @@ export default {
     }
   },
   mounted() {
-    // let _this = this;
-    // document.addEventListener("mouseover", function(e) {
-    //   if (!_this.$refs.calendarBox.contains(e.target)) {
-    //     _this.eventListVisible = false;
-    //   }
-    // });
+    let _this = this;
+    document.addEventListener("mouseover", function(e) {
+      if (!_this.$refs.calendarBox.contains(e.target)) {
+        _this.eventListVisible = false;
+      }
+    });
   }
 };
 </script>
 
 <style lang="scss">
-$link-color: #448aff;
 @function pxWithVw($n) {
   @return 100% * $n / 375;
 }
@@ -330,12 +329,12 @@ $link-color: #448aff;
   z-index: 1000;
 }
 .event-list {
-  color: #409eff;
-  margin-left: 15px;
+  list-style-type: none;
   & > li > a {
     display: block;
+    line-height: 1.8;
     width: 100%;
-    color: $link-color;
+    color: #444444;
     text-decoration: none;
     font-size: 14px;
     overflow: hidden;
@@ -343,6 +342,10 @@ $link-color: #448aff;
     white-space: nowrap;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    border-bottom: 1px dashed #eeeeee;
+    &:hover{
+      text-decoration: underline;
+    }
   }
 }
 .tips {
@@ -356,7 +359,7 @@ $link-color: #448aff;
   border-radius: 4px;
   background-color: white;
   .calendar__header {
-    background-color: #f1f1f1;
+    background-color: #f0f2f5;
     color: #2c3135;
     font-size: 16px;
     display: flex;
@@ -430,7 +433,7 @@ $link-color: #448aff;
       align-items: center;
       justify-content: center;
       color: #666666;
-      background-color: #f1f1f1;
+      background-color: #f0f2f5;
       flex-shrink: 0;
       box-shadow: 0;
       position: relative;
@@ -465,7 +468,7 @@ $link-color: #448aff;
     }
     .main__block-today {
       transition: 0.5s all;
-      background-color: #409eff;
+      background-color: #444444;
       color: #fff;
       box-shadow: 0 2px 6px rgba(171, 171, 171, 0.5);
     }
@@ -479,7 +482,7 @@ $link-color: #448aff;
       justify-content: center;
       font-size: 12px;
       color: #7f8fa4;
-      background-color: #f1f1f1;
+      background-color: #f0f2f5;
       flex-shrink: 0;
     }
   }
