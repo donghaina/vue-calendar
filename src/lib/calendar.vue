@@ -33,7 +33,7 @@
         <div
           :class="`main__block ${(item.type === 'pre' || item.type === 'next') ? 'main__block-not' : ''} ${(item.day === selectedDate && item.type === 'normal') && 'main__block-today'}`"
           @click.stop="handleDayClick($event,item)"
-          @mouseover.stop="showEventList($event,item)"
+          @mouseover.stop="showEventList($event,item,index)"
           v-for="(item, index) in displayDaysPerMonthT(selectedYear)[selectedMonth]"
           :key="item.type + item.day + `${index}`"
         >
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <section class="event-wrapper"  :style="{top:offestTop,left:offsetLeft}"  v-if="eventListVisible">
+    <section class="event-wrapper"  :style="{top:offestTop}"  v-if="eventListVisible">
       <ul class="event-list">
         <li v-for="(item,index) in events" :key="index">
           <a :href="item.link" target="_blank">{{item.title}}</a>
@@ -86,13 +86,12 @@ export default {
     };
   },
   methods: {
-    showEventList(e, item) {
+    showEventList(e, item, index) {
       this.events = this.eventList[item.key]
         ? this.eventList[item.key]["activity_list"]
         : [];
       if (this.events.length > 0) {
-        this.offestTop = e.pageY - 20 + "px";
-        this.offsetLeft = e.pageX - 360 + "px";
+        this.offestTop = document.querySelectorAll('.main__block')[index].offsetTop + 40 + 'px';
         setTimeout(() => {
           this.eventListVisible = true;
         }, 100);
@@ -315,18 +314,21 @@ export default {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  position: relative
 }
 .event-wrapper {
   padding: 15px;
   background-color: #ffffff;
   position: absolute;
   box-sizing: border-box;
-  max-width: 360px;
-  width: pxWithVw(300);
+  max-width: 480px;
+  width: 98%;
   margin: 0 auto;
   left: 0;
   right: 0;
   z-index: 1000;
+  border-radius: 4px;
+  border: 1px solid #f1f1f1;
 }
 .event-list {
   list-style-type: none;
