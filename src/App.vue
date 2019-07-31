@@ -30,7 +30,12 @@ export default {
           month: _this.selectedMonth,
         }
       }).then(res=>{
-        _this.activityList = res.data.data
+        let result = res.data.data;
+        Object.keys(result).forEach(key=>{
+          result[key].isToday = result[key].is_today == 1;
+        })
+        console.log(result);
+        _this.activityList = result;
       })
     },
     pasEnd(val) {

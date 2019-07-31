@@ -31,7 +31,7 @@
         <div class="main__block-head" v-for="(item, index) in calendarHeader" :key="index">{{item}}</div>
 
         <div
-          :class="`main__block ${(item.type === 'pre' || item.type === 'next') ? 'main__block-not' : ''} ${(item.day === selectedDate && item.type === 'normal') && 'main__block-today'}`"
+          :class="`main__block ${(item.type === 'pre' || item.type === 'next') ? 'main__block-not' : ''} ${item.event && item.event.isToday ? 'main__block-today' : ''}`"
           @click.stop="handleDayClick($event,item)"
           @mouseover.stop="showEventList($event,item,index)"
           v-for="(item, index) in displayDaysPerMonthT(selectedYear)[selectedMonth]"
